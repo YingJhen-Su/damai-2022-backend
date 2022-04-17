@@ -28,6 +28,9 @@ class QuizController extends Controller
         // TODO: 實作取得匯率
         $from = $request->query('from');
         $to   = $request->query('to');
+        if (empty($from) || empty($to)) {
+          return response()->json(["message" => "input error"], 400);
+        }
 
         try {
           $response = $this->exchangeService->getExchangeRate($from, $to);
