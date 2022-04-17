@@ -8,6 +8,8 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class ExchangeResource extends JsonResource
 {
+   public static $wrap = null;
+
     /**
      * Transform the resource into an array.
      *
@@ -18,6 +20,9 @@ class ExchangeResource extends JsonResource
     public function toArray($request)
     {
         // TODO: response data {"exchange_rate": 0.25, "udpated_at": "2022-01-01 23:59:59"}
-        return [];
+        return [
+          'exchange_rate' => $this->resource['exchange_rate'],
+          'updated_at'    => $this->resource['updated_at']
+        ];
     }
 }
